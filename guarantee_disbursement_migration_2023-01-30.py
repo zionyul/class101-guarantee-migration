@@ -125,8 +125,15 @@ for row in data:
     "externalToken": row['guarantee_code'],
     "registerBy": "DAVID"
     }
-    if datetime.strptime(guaranteeStartDate, "%Y-%m-%d %H:%M:%S") > datetime(2022, 12, 1, 00, 00, 00):
-        print(payload)
+ 
+    # def check_guarantee_validity(remainingGuarantee, guaranteeStartDate):
+    
+    if float(remainingGuarantee) > 0.00 and not (datetime.strptime(guaranteeStartDate, "%Y-%m-%d %H:%M:%S") > datetime(2022, 12, 1, 0, 0, 0)):
+        response_data = post_request(url, payload)
+
+
+    # if float(remainingGuarantee) > 0.00 && !(datetime.strptime(guaranteeStartDate, "%Y-%m-%d %H:%M:%S") > datetime(2022, 12, 1, 00, 00, 00)):
+    #     print(payload)
 
     # if float(remainingGuarantee) > 0.00:
     #     response_data = post_request(url, payload)
