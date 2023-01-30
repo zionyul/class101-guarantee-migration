@@ -95,10 +95,12 @@ def extract_contract_type(guarantee_contract_name):
     return contract_type_map.get(guarantee_contract_name, None)
 
 for row in data:
+    remainingGuarantee = row['remaining_guarantee']
+    
     payload = {
     "disbursementType": "GUARANTEE",
     "money": {
-                "amount": row['remaining_guarantee'],
+                "amount": remainingGuarantee,
                 "currency": row['guarantee_currency']
              },
     "actionType": "DISBURSEMENT",
@@ -108,7 +110,9 @@ for row in data:
     }
     print(payload)
 
-    response_data = post_request(url, payload)
+    if float(remainingGuarantee) > 0.00:
+        response_data = post_request(url, payload)
+
     print(response_data)
     # time.sleep(1)
     time.sleep(0.2)  # pauses the program for 5 seconds
