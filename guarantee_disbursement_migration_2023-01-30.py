@@ -95,8 +95,25 @@ def extract_contract_type(guarantee_contract_name):
     return contract_type_map.get(guarantee_contract_name, None)
 
 for row in data:
-    remainingGuarantee = row['remaining_guarantee']
-    
+    storeId = row['store_id']
+    guaranteeStartDate = row['guarantee_start_date']
+    if datetime.strptime(guaranteeStartDate, "%Y-%m-%d %H:%M:%S") > datetime(2022, 12, 1, 00, 00, 00):
+        print(guaranteeStartDate)
+
+    fixed_guarantee = 'fixed_guarantee_per_month'
+
+    if storeId in ('63464b9c7d98bc00154ddff4', '63c5da9c4154fa0016ddbec9'):
+        remainingGuarantee = row.get(fixed_guarantee)
+    else:
+        remainingGuarantee = row['remaining_guarantee']
+
+    # if storeId == '63464b9c7d98bc00154ddff4':
+    #     remainingGuarantee = row['fixed_guarantee_per_month']
+    # elif storeId == '63c5da9c4154fa0016ddbec9':
+    #     remainingGuarantee = row['fixed_guarantee_per_month']
+    # else
+    #     remainingGuarantee = row['remaining_guarantee']
+
     payload = {
     "disbursementType": "GUARANTEE",
     "money": {
@@ -108,12 +125,13 @@ for row in data:
     "externalToken": row['guarantee_code'],
     "registerBy": "DAVID"
     }
-    print(payload)
+    if datetime.strptime(guaranteeStartDate, "%Y-%m-%d %H:%M:%S") > datetime(2022, 12, 1, 00, 00, 00):
+        print(payload)
 
-    if float(remainingGuarantee) > 0.00:
-        response_data = post_request(url, payload)
+    # if float(remainingGuarantee) > 0.00:
+    #     response_data = post_request(url, payload)
 
-    print(response_data)
+    # print(response_data)
     # time.sleep(1)
     time.sleep(0.2)  # pauses the program for 5 seconds
 
