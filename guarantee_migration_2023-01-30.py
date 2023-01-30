@@ -1,6 +1,8 @@
 import csv
 import requests
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
+
 import pytz
 import time
 import getopt
@@ -53,25 +55,26 @@ def post_request(url, payload):
     else:
         raise ValueError(f'Request failed with status code {response.status_code}')
 
-def change_utc_timezone(date_string):
-    date_length = len(date_string)
-    # print(date_length)
-    if date_length == 7:
-        date_object = datetime.strptime(date_string, "%Y-%m")
-    elif date_length == 6:
-        date_object = datetime.strptime(date_string, "%Y-%m")
-    elif date_length == 10:
-        date_object = datetime.strptime(date_string, "%Y-%m-%d")
-    else:
-        return ''
+def change_utc_timezone(date_string, is_subtract):
+    formats = {7: "%Y-%m", 6: "%Y-%m", 10: "%Y-%m-%d"}
+    date_format = formats.get(len(date_string))
+    if not date_format:
+        return ""
+    date_object = datetime.strptime(date_string, date_format)
+    if is_subtract:
+        date_object = subtract_one_month(date_object)
+    return convert_to_utc(date_object)
 
-    # datetime 객체를 timezone을 가진 datetime 객체로 변환
-    tz = pytz.timezone('Asia/Seoul')
+def convert_to_utc(date_object):
+    tz = pytz.timezone("Asia/Seoul")
     zoned_datetime = tz.localize(date_object)
-
-    # UTC timezone으로 변환
     utc_datetime = zoned_datetime.astimezone(pytz.UTC)
     return utc_datetime.isoformat()
+
+def subtract_one_month(date):
+    print(date)
+    return date + relativedelta(months=-1)
+    
 
 def extract_numeric_amount(dollar_amount):
     numeric_amount = dollar_amount.replace("$", "").replace("₩", "").replace("¥", "").replace(",", "").replace(" ", "")
@@ -104,15 +107,32 @@ for row in data:
     else:
         fixedGuaranteePerMonth = guaranteeTotalAmount
     # 개런티 지급 시작월
-    if row['guaranteeStartDate']:
-        guaranteeStartDate = change_utc_timezone(row['guaranteeStartDate'])
+    guaranteeStartDate = row['guaranteeStartDate']
+
+    if guaranteeStartDate:
+        guaranteeStartDate = change_utc_timezone(guaranteeStartDate, 1)
     else:
         guaranteeStartDate = '2022-11-30T15:00:00.000Z'
+
+    # if row['guaranteeStartDate']:
+    #     guaranteeStartDate = change_utc_timezone(row['guaranteeStartDate'])
+    #     guaranteeStartDate = subtract_one_month(guaranteeStartDate)
+    # else:
+    #     guaranteeStartDate = '2022-11-30T15:00:00.000Z'
     # 개런티 지급 종료월
-    if row['guaranteeEndDate']:
-        guaranteeEndDate = change_utc_timezone(row['guaranteeEndDate'])
+    guaranteeEndDate = row['guaranteeEndDate']
+
+    if guaranteeEndDate:
+        guaranteeEndDate = change_utc_timezone(guaranteeEndDate, 1)
     else:
         guaranteeEndDate = '2022-11-30T15:00:00.000Z'
+
+    # if row['guaranteeEndDate']:
+    #     guaranteeEndDate = change_utc_timezone(row['guaranteeEndDate'])
+    #     guaranteeEndDate = subtract_one_month(guaranteeEndDate)
+    # else:
+    #     guaranteeEndDate = '2022-11-30T15:00:00.000Z'
+
     print(guaranteeTotalAmount)
     print(remainingGuarantee)
     print(fixedGuaranteePerMonth)
@@ -122,12 +142,12 @@ for row in data:
     maxDeductionPerMonth = extract_numeric_amount(row['maxDeductionPerMonth'])
     # 개런티 차감 시작월
     if row['deductionStartDate'] != 'null':
-        deductionStartDate = change_utc_timezone(row['deductionStartDate'])
+        deductionStartDate = change_utc_timezone(row['deductionStartDate'], 0)
     else:
         deductionStartDate = ''
     # 개런티 차감 종료월
     if row['deductionEndDate'] != 'null':
-        deductionEndDate = change_utc_timezone(row['deductionEndDate'])
+        deductionEndDate = change_utc_timezone(row['deductionEndDate'], 0)
     else:
         deductionEndDate = ''
     # payload = {
