@@ -94,23 +94,61 @@ def extract_contract_type(guarantee_contract_name):
     }
     return contract_type_map.get(guarantee_contract_name, None)
 
+def get_remaining_guarantee(storeId):
+    remaining_guarantee_mapping = {
+        '63464b9c7d98bc00154ddff4': 2400,
+        '63c5da9c4154fa0016ddbec9': 700,
+        '603fa00d029fd2000e0532d1': 12000000,
+        '604783fbb51f020015383f48': 8000000,
+        '6232d4947456cc000d211875': 45000000,
+        '628382e8e89e480015df24e8': 80000000,
+        '61e7953a4cb71000148b7b5f': 18000000,
+        '632183665435f6000f7b28e2': 6000000,
+        '5f16b35e7b86c30de421f953': 4500000,
+        '61fddf5a47fb97001454d023': 12000000,
+        '62ce0a634c9b9e000e37e657': 7500000,
+        '60ff7ec554499f000d8967b0': 4000000,
+        '6090bd5c93cea9000eac2ef5': 20000000,
+        '60f1308bc69381001510783a': 1500000,
+        '5e5382a0169295408735b8e4': 4000000,
+        '5f55d3163d49e3000cbefc09': 8000000
+    }
+    return remaining_guarantee_mapping.get(storeId, row['remaining_guarantee'])
+
 for row in data:
     storeId = row['store_id']
     guaranteeStartDate = row['guarantee_start_date']
-    if datetime.strptime(guaranteeStartDate, "%Y-%m-%d %H:%M:%S") > datetime(2022, 12, 1, 00, 00, 00):
-        print(guaranteeStartDate)
+    # if datetime.strptime(guaranteeStartDate, "%Y-%m-%d %H:%M:%S") > datetime(2022, 12, 1, 00, 00, 00):
+    print(guaranteeStartDate)
+    
+    # fixed_guarantee = 'fixed_guarantee_per_month'
 
-    fixed_guarantee = 'fixed_guarantee_per_month'
-
-    if storeId in ('63464b9c7d98bc00154ddff4', '63c5da9c4154fa0016ddbec9'):
-        remainingGuarantee = row.get(fixed_guarantee)
+    if storeId in ( '63464b9c7d98bc00154ddff4', 
+                    '63c5da9c4154fa0016ddbec9', 
+                    '603fa00d029fd2000e0532d1',
+                    '604783fbb51f020015383f48',
+                    '6232d4947456cc000d211875', 
+                    '628382e8e89e480015df24e8', 
+                    '61e7953a4cb71000148b7b5f', 
+                    '632183665435f6000f7b28e2',
+                    '5f16b35e7b86c30de421f953',
+                    '61fddf5a47fb97001454d023', 
+                    '62ce0a634c9b9e000e37e657',
+                    '60ff7ec554499f000d8967b0',
+                    '6090bd5c93cea9000eac2ef5', 
+                    '60f1308bc69381001510783a',
+                    '5e5382a0169295408735b8e4',
+                    '5f55d3163d49e3000cbefc09'):
+        remainingGuarantee = get_remaining_guarantee(storeId)
     else:
         remainingGuarantee = row['remaining_guarantee']
 
+    print(remainingGuarantee)
+
     # if storeId == '63464b9c7d98bc00154ddff4':
-    #     remainingGuarantee = row['fixed_guarantee_per_month']
+    #     remainingGuarantee = 2400
     # elif storeId == '63c5da9c4154fa0016ddbec9':
-    #     remainingGuarantee = row['fixed_guarantee_per_month']
+    #     remainingGuarantee = 700
     # else
     #     remainingGuarantee = row['remaining_guarantee']
 
@@ -129,6 +167,7 @@ for row in data:
     # def check_guarantee_validity(remainingGuarantee, guaranteeStartDate):
     
     if float(remainingGuarantee) > 0.00 and not (datetime.strptime(guaranteeStartDate, "%Y-%m-%d %H:%M:%S") > datetime(2022, 12, 1, 0, 0, 0)):
+        print(payload)
         response_data = post_request(url, payload)
 
 
