@@ -36,7 +36,7 @@ if file_name:
 else:
     data = None
 
-# -ㅊ 값을 읽어서, 서버를 선택한다.
+# -c 값을 읽어서, 서버를 선택한다.
 url_map = {'local': 'http://localhost:8080/api/v1/guarantee',
            'development': 'http://dev-payout.private.class101.net/api/v1/guarantee',
            'staging': 'http://staging-payout.private.class101.net/api/v1/guarantee',
