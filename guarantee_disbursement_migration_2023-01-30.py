@@ -31,7 +31,7 @@ import os
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 # 다른 디렉토리의 상대 경로
-relative_path = os.path.join(current_dir, '../guarantee_migration_result_2023-01-26.csv')
+relative_path = os.path.join(current_dir, '../guarantee_migration_result_2023-01-31.csv')
 print(relative_path)
 
 # -f 값을 읽어서, 파일을 선택한다.
@@ -154,6 +154,7 @@ for row in data:
 
     payload = {
     "disbursementType": "GUARANTEE",
+    "exchangeMonth": "202211",
     "money": {
                 "amount": remainingGuarantee,
                 "currency": row['guarantee_currency']
