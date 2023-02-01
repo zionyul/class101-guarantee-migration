@@ -156,7 +156,7 @@ for row in data:
     payload = {
     "guaranteeId": row['guarantee_id'],
     "amount": {
-                "amount": row['remaining_guarantee'],
+                "amount": remainingGuarantee,
                 "currency": row['guarantee_currency']
              },
     }
