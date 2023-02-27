@@ -1,0 +1,13 @@
+,,guaranteeContractType,,guaranteeMemo,storeId,Creator Name,klassId,,currency,guaranteeTotalKlass,guaranteeTotalSubscription,remainingGuaranteeKlass,remainingGuaranteeSubscription,minGuaranteePerMonth,fixedGuaranteePerMonth,guaranteeStartDate,guaranteeEndDate,maxDeduction,maxDeductionPerMonth,deductionStartDate,deductionEndDate
+,,클래스 계약,,,639acd95f194c9000e5f2f6b,유라야놀자 1차,638044114cd827000e7f423f,,KRW,1,,0,,,"4,000,000",2023-03,2023-03,,null,2023-02,null
+,,클래스 계약,,,639be6fb3ae018000fb25271,이인철,6374d81ff8d6d4000ec049f8,,KRW,1,,0,,,"5,000,000",2023-03,2023-03,,null,2023-02,null
+,,클래스 계약,,,5faa8aef716d830013c5af6d,Signature 전수경,5f8d1db0d0957e000d2dec1c,,KRW,"7,000,000",,"5,869,099",,,,,,,null,2023-02,null
+,,클래스 계약,,,5f154ba204363b18f53dd0e3,Signature 함경식,5efaab27f230744d01bcf92b,,KRW,"15,000,000",,"5,998,054",,,,,,,null,2023-02,null
+,,클래스 계약,,,63607680f32ef9000ed1777d,주식회사 하이어뮤직레코즈,635a38946864140016b1cd6c,,KRW,1,,0,,,"10,000,000",2023-03,2023-03,,null,2023-02,null
+,,구독 동의 계약,,,62df45151b8f6100155ec612,블루밍테일,62615f31d8314d000e0bb71d,,KRW,1,,0,,,"10,000,000",2023-03,2023-03,,5000000,2023-03,null
+,,클래스 계약,,,608f5dbf60dd07001507daa8,[커리어] 남미미,6083d70330c8cb00153acb8b,,KRW,"9,000,000",,"7,684,929",,,,,,,null,2023-02,null
+,,클래스 계약,,,61b97d9f2547920013062d40,원태연,619cb688fb2652003b4c8fa9,,KRW,"11,000,000",,"9,350,000",,,,,,,null,2023-02,null
+,,클래스 계약,,,5d5b52f35775850c6ec3fed8,뷰티피아,5d1dd456fd2c83e2ee15cb6d,,KRW,"5,000,000",,"1,037,871",,,,,,,null,2023-02,null
+,,구독 동의 계약,,,6078153d0161f5000eb0413c,킨킨,5f6d7706b59ca10014d37f31,,KRW,1,,0,,,"2,000,000",2023-03,2023-03,,1000000,2023-04,null
+,,클래스 계약,,곽정은 2차 모듈 (1),63eb24996f85600015a63def,,63d7575e628e01000eb4faca,,KRW,"4,000,000",,"4,000,000",,,"2,000,000",2022-11,2022-12,,1000000,2023-03,null
+,,클래스 계약,,곽정은 2차 모듈 (2),63ec9d3c120afd001549c1f3,,63d8e6ca14fbab000ef59850,,KRW,"4,000,000",,"4,000,000",,,"2,000,000",2023-01,2023-02,,1000000,2023-03,null
