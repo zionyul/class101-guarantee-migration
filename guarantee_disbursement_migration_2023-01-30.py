@@ -35,10 +35,10 @@ relative_path = os.path.join(current_dir, '../guarantee_migration_result_staging
 print(relative_path)
 
 # -f 값을 읽어서, 파일을 선택한다.
-file_map = {'local': 'guarantee_migration_result_development_2023-01-31.csv',
-           'development': 'guarantee_migration_result_development_2023-01-31.csv',
-           'staging': 'guarantee_migration_result_staging_2023-01-31.csv',
-           'production': 'guarantee_migration_result_production_2023-01-31.csv'}
+file_map = {'local': 'guarantee_migration_result_development_2023-02-27.csv',
+           'development': 'guarantee_migration_result_development_2023-02-27.csv',
+           'staging': 'guarantee_migration_result_staging_2023-02-27.csv',
+           'production': 'guarantee_migration_result_production_2023-02-27.csv'}
 
 file_name = file_map.get(running_env)
 if file_name:

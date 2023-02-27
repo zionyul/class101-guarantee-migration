@@ -29,7 +29,7 @@ def read_csv(file_path):
 
 # -f 값을 읽어서, 파일을 선택한다.
 file_map = {'USD': 'GUARANTEE_FINAIL_2022-12_USD_2023-01-31.csv',
-            'KRW': 'GUARANTEE_FINAIL_2022-12_KRW_2023-01-31.csv',
+            'KRW': 'GUARANTEE_FINAIL_2023-02_KRW_2023-02-27.csv',
             'JPY': 'GUARANTEE_FINAIL_2022-12_JPY_2023-01-31.csv'}
 
 file_name = file_map.get(migration_file)
